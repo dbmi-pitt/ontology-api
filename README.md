@@ -4,8 +4,8 @@ The HuBMAP Ontology API contains a Neo4j graph loaded with the [UMLS](https://ww
 
 There are three pieces/containers here:
 * The neo4j server that contains the onthology which is build with .csv files on startup. The .csv files are not stored in the git repo because some are covered by licenses. The .csv files will be deleted when the server is built to save disk space on the server.
-* Constraints need to be added to the data in the neo4j database, but that can only be done after it is up and running. The neo4j-constraints container will wait for the neo4j server to start to take commands and then run a batch of constraints to 'fixup' the databse making it ready to be used.
-* The server container is a RESTful API server that is created by the 'build-serer.sh' script from the 'ontology-x.x.x.yml' OpenAPI specification file. There is an additional 'server/openapi_server/controllers/neo4j_manager.py' that is used to define neo4j queries that are used by the endpoints in a one-to-one manner. From this YAML file it is also possible to create clients for the server that can be included in programs acessing the serer.
+* Constraints need to be added to the data in the neo4j database, but that can only be done after it is up and running. The neo4j-constraints container will wait for the neo4j server to start to take commands and then run a batch of constraints to 'fixup' the databse making it ready to be used. This container will exit when this is done. If the container is started again it will 'fail' because the constraints will already exist.
+* The server container is a RESTful API server that is created by the 'build-serer.sh' script from the 'ontology-x.x.x.yml' OpenAPI specification file. There is an additional 'server/openapi_server/controllers/neo4j_manager.py' that is used to define neo4j queries that are used by the endpoints in a one-to-one manner. From this YAML file it is also possible to create clients for the server that can be included in programs acessing the serer. 
 
 ## Local Deployment Instructions
 
@@ -15,7 +15,7 @@ There are three pieces/containers here:
 
 ## Use it Instructions
 
-* The URL 'http://<<host>>:8080/ui/' will render an interface from which the OPENapi endpoints can be viewed and tested.
+* The URL [https://ontology-api.???.hubmapconsortium.org/ui](https://ontology-api.???.hubmapconsortium.org/ui/) will render a [Swagger UI](https://swagger.io/tools/swagger-ui/) interface from which the OPENapi endpoints can be viewed and executed.
 
 ## Remote Deployment
 

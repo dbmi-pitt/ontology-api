@@ -1,5 +1,5 @@
 import neo4j
-import configparser
+from configparser import ConfigParser
 
 from openapi_server.models.concept_code import ConceptCode
 from openapi_server.models.concept_detail import ConceptDetail
@@ -17,7 +17,7 @@ from openapi_server.models.concept_term import ConceptTerm
 class Neo4jManager(object):
 
     def __init__(self):
-        config = configparser.ConfigParser()
+        config = ConfigParser()
         # [neo4j]
         # Server = bolt://localhost: 7687
         # Username = neo4j

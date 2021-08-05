@@ -13,7 +13,9 @@ from openapi_server.models.sty_tui_stn import StyTuiStn  # noqa: E501
 from openapi_server.models.termtype_code import TermtypeCode  # noqa: E501
 from openapi_server.models.termtype_term import TermtypeTerm  # noqa: E501
 from openapi_server import util
+
 from openapi_server.controllers.neo4j_manager import Neo4jManager
+from hubmap_commons.hm_auth import secured
 
 neo4jManager = Neo4jManager()
 
@@ -187,6 +189,7 @@ def terms_term_id_concepts_terms_get(term_id: str) -> [ConceptTerm]:  # noqa: E5
     return neo4jManager.terms_term_id_concepts_terms_get(term_id)
 
 
+@secured(groups="HuBMAP-read")
 def tui_tui_id_semantics_get(tui_id: str) -> [SemanticStn]:  # noqa: E501
     """Returns a list of {semantic, STN} dictionaries associated with the tui_id
 
